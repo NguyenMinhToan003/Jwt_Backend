@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List User</title>
+    <link rel="stylesheet" href="/css/listUser.css" />
+  </head>
+  <body>
+    <div class="page-content page-container" id="page-content">
+      <h2>List User</h2>
+      <div class="padding">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="list list-row block">
+              <% for(var i=0; i < dataUsers.length; i++) { %>
+              <div class="list-item">
+                <div>
+                  <a href="#"
+                    ><span
+                      class="w-48 avatar <%= i%2 === 0 ? `gd-info` : `gd-warning` %>"
+                      ><%= dataUsers[i].name[0] %></span
+                    ></a
+                  >
+                </div>
+                <div class="flex">
+                  <a href="#" class="item-author text-color"
+                    ><%= dataUsers[i].name %></a
+                  >
+                  <div class="item-except text-muted text-sm h-1x">
+                    <%= dataUsers[i].email %>
+                  </div>
+                </div>
+                <div class="no-wrap" style="margin-left: auto">
+                  <div class="item-date text-muted text-sm d-none d-md-block">
+                    <%= dataUsers[i].date %>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
