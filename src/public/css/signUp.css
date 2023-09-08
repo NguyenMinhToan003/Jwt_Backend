@@ -200,7 +200,14 @@ body {
   margin: 0.5rem 0;
   width: 100%;
 }
-
+a {
+  text-decoration: none;
+}
+.nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
 @keyframes show {
   0%,
   49.99% {

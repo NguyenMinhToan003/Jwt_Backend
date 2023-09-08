@@ -248,7 +248,7 @@ a:not([href]):not([tabindex]):focus {
 
 @media (min-width: 992px) {
   .page-container {
-    max-width: 570px;
+    max-width: 900px;
     margin: 0 auto;
   }
   .page-sidenav {
