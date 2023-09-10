@@ -26,6 +26,28 @@ const handlerCenterListUser = async (req, res) => {
   let listData = await userService.loadListUser();
   return res.render("centerListUser.ejs", { data: listData });
 };
+const handlerAbout = (req, res) => {
+  return res.render("about.ejs");
+};
+const handlerDeleteUser = async (req, res) => {
+  const { id } = req.body;
+  await pool.execute(`DELETE  FROM datauser WHERE ID = ?`, [id]);
+  return res.redirect(`/user`);
+};
+const handlerEditUser = async (req, res) => {
+  let id = req.params.id;
+  let [user] = await pool.execute(`select * from datauser where ID = ?`, [id]);
+  return res.render("updateUser.ejs", { data: user[0] });
+};
+const handlerUpdateUser = async (req, res) => {
+  let { name, email, id, password } = req.body;
+  let hashPass = userService.hashPassword(password);
+  await pool.execute(
+    "UPDATE datauser SET name = ?, email= ?,  password= ? WHERE id = ?;",
+    [name, email, hashPass, id]
+  );
+  return res.redirect("/centerListUser");
+};
 module.exports = {
   handlerUser,
   handlerSignup,
@@ -33,4 +55,8 @@ module.exports = {
   handlerCreateUser,
   handlerSignin,
   handlerCenterListUser,
+  handlerAbout,
+  handlerDeleteUser,
+  handlerEditUser,
+  handlerUpdateUser,
 };

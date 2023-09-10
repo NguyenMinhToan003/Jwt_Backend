@@ -39,3 +39,8 @@ li a:hover:not(.active) {
   color: #04aa6d;
   text-decoration: dashed;
 }
+.option {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}

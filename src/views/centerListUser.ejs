@@ -14,13 +14,13 @@
         <li><a href="/user">List User</a></li>
         <li><a href="/signup">SignUp</a></li>
         <li><a href="/centerListUser">Center</a></li>
-        <li><a href="about">About</a></li>
+        <li><a href="/about">About</a></li>
       </ul>
       <h3 class="title">Center List User</h3>
       <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">Id</th>
           <th scope="col">First</th>
           <th scope="col">Last</th>
           <th scope="col">Handle</th>
@@ -30,12 +30,28 @@
         <%for(var i=0; i < data.length ; i ++) {%>
 
         <tr>
-          <th scope="row">2</th>
+          <th scope="row"><%=data[i].id%></th>
           <td><%=data[i].name%></td>
           <td><%=data[i].email%></td>
           <td>
-            <button  type="button" class="btn btn-danger">Delete</button>
-            <button type="button" class="btn btn-warning">Edit</button>
+          <div class="option">
+            <form action="/deleteUser/<%= data[i].id %>" method="POST" >
+              <input
+                type="text"
+                hidden
+                value="<%= data[i].id %> "
+                name="id" />
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+
+            <form action="/editUser/<%= data[i].id %>" method="GET" target="_blank">
+              <input type="text" hidden />
+              <button type="submit" class="btn btn-warning">Edit</button>
+            </form>
+          </div>
+
+            <!-- <a href="/deleteUser:<%=data[i].id %>" type="button" class="btn btn-danger">Delete</a> -->
+            <!-- <a href="editUser:id"" type="button" class="btn btn-warning">Edit</a> -->
         </td>
         </tr>
         <% } %>

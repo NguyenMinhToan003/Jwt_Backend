@@ -17,6 +17,7 @@ const loadListUser = async () => {
   const [rows, fields] = await pool.execute("SELECT * FROM `datauser` ");
   return rows;
 };
+
 module.exports = {
   hashPassword,
   createNewUser,
