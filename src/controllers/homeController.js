@@ -31,8 +31,9 @@ const handlerAbout = (req, res) => {
 };
 const handlerDeleteUser = async (req, res) => {
   const { id } = req.body;
-  await pool.execute(`DELETE  FROM datausers WHERE ID = ?`, [id]);
-  return res.redirect(`/user`);
+  await userService.deleteUser(id);
+  // await pool.execute(`DELETE  FROM datausers WHERE ID = ?`, [id]);
+  return res.redirect(`/centerListUser`);
 };
 const handlerEditUser = async (req, res) => {
   let id = req.params.id;
@@ -42,12 +43,15 @@ const handlerEditUser = async (req, res) => {
 const handlerUpdateUser = async (req, res) => {
   let { name, email, id, password } = req.body;
   if (!(name && email && id && password)) return res.send("can not invalid");
-  let hashPass = userService.hashPassword(password);
-  await pool.execute(
-    "UPDATE datausers SET name = ?, email= ?,  password= ? WHERE id = ?;",
-    [name, email, hashPass, id]
-  );
+  await userService.editUser(id, name, email, password);
+
   return res.redirect("/centerListUser");
+};
+const handlerUserDetail = async (req, res) => {
+  console.log("this is detail user");
+  let id = req.params.id;
+  let [user] = await pool.execute(`select * from datausers where ID = ?`, [id]);
+  return res.render("userDetail.ejs", { data: user[0] });
 };
 module.exports = {
   handlerUser,
@@ -60,4 +64,5 @@ module.exports = {
   handlerDeleteUser,
   handlerEditUser,
   handlerUpdateUser,
+  handlerUserDetail,
 };

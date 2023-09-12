@@ -13,6 +13,7 @@ const initWebRouter = (app) => {
   router.post("/deleteUser/:id", homeController.handlerDeleteUser);
   router.get("/editUser/:id", homeController.handlerEditUser);
   router.post("/updateUser", homeController.handlerUpdateUser);
+  router.get("/user-detail/:id", homeController.handlerUserDetail);
   return app.use("/", router);
 };
 export default initWebRouter;

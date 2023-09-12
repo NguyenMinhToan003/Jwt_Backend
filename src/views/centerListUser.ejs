@@ -30,11 +30,17 @@
         <%for(var i=0; i < data.length ; i ++) {%>
 
         <tr>
+  
           <th scope="row"><%=data[i].id%></th>
           <td><%=data[i].name%></td>
           <td><%=data[i].email%></td>
           <td>
           <div class="option">
+            <a  href="/user-detail/<%=data[i].id%>"  type="button" class="btn btn-primary">Details</a>
+            <form action="/editUser/<%= data[i].id %>" method="GET" target="_blank">
+              <input type="text" hidden />
+              <button type="submit" class="btn btn-warning">Edit</button>
+            </form>
             <form action="/deleteUser/<%= data[i].id %>" method="POST" >
               <input
                 type="text"
@@ -43,11 +49,8 @@
                 name="id" />
               <button class="btn btn-danger" type="submit">Delete</button>
             </form>
-
-            <form action="/editUser/<%= data[i].id %>" method="GET" target="_blank">
-              <input type="text" hidden />
-              <button type="submit" class="btn btn-warning">Edit</button>
-            </form>
+            
+          
           </div>
 
             <!-- <a href="/deleteUser:<%=data[i].id %>" type="button" class="btn btn-danger">Delete</a> -->
