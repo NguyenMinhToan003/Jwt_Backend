@@ -32,7 +32,11 @@ const handlerAbout = (req, res) => {
 const handlerDeleteUser = async (req, res) => {
   const { id } = req.body;
   await userService.deleteUser(id);
+<<<<<<< HEAD
   // await pool.execute(`DELETE  FROM user WHERE ID = ?`, [id]);
+=======
+  // await pool.execute(`DELETE  FROM datausers WHERE ID = ?`, [id]);
+>>>>>>> 9b19918 (ORM update create delete user)
   return res.redirect(`/centerListUser`);
 };
 const handlerEditUser = async (req, res) => {
@@ -50,7 +54,11 @@ const handlerUpdateUser = async (req, res) => {
 const handlerUserDetail = async (req, res) => {
   console.log("this is detail user");
   let id = req.params.id;
+<<<<<<< HEAD
   let [user] = await pool.execute(`select * from User where ID = ?`, [id]);
+=======
+  let [user] = await pool.execute(`select * from datausers where ID = ?`, [id]);
+>>>>>>> 9b19918 (ORM update create delete user)
   return res.render("userDetail.ejs", { data: user[0] });
 };
 module.exports = {

@@ -37,7 +37,11 @@
           <td>
           <div class="option">
             <a  href="/user-detail/<%=data[i].id%>"  type="button" class="btn btn-primary">Details</a>
+<<<<<<< HEAD
             <form action="/editUser/<%= data[i].id %>" method="GET" >
+=======
+            <form action="/editUser/<%= data[i].id %>" method="GET" target="_blank">
+>>>>>>> 9b19918 (ORM update create delete user)
               <input type="text" hidden />
               <button type="submit" class="btn btn-warning">Edit</button>
             </form>
