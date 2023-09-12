@@ -1,6 +1,6 @@
 import Express from "express";
 import userService from "../services/userService";
-import pool from "../configs/connectDataBase";
+import pool from "../config/connectDataBase";
 let getHomepage = async (req, res) => {
   return res.render("home.ejs");
 };
@@ -17,7 +17,7 @@ const handlerCreateUser = async (req, res) => {
   if (email && name && password) {
     userService.createNewUser(email, password, name);
   } else return;
-  return res.send("this is create user");
+  return res.redirect("/centerListUser");
 };
 const handlerSignin = (req, res) => {
   return res.render("signIn.ejs");
@@ -31,19 +31,20 @@ const handlerAbout = (req, res) => {
 };
 const handlerDeleteUser = async (req, res) => {
   const { id } = req.body;
-  await pool.execute(`DELETE  FROM datauser WHERE ID = ?`, [id]);
+  await pool.execute(`DELETE  FROM datausers WHERE ID = ?`, [id]);
   return res.redirect(`/user`);
 };
 const handlerEditUser = async (req, res) => {
   let id = req.params.id;
-  let [user] = await pool.execute(`select * from datauser where ID = ?`, [id]);
+  let [user] = await pool.execute(`select * from datausers where ID = ?`, [id]);
   return res.render("updateUser.ejs", { data: user[0] });
 };
 const handlerUpdateUser = async (req, res) => {
   let { name, email, id, password } = req.body;
+  if (!(name && email && id && password)) return res.send("can not invalid");
   let hashPass = userService.hashPassword(password);
   await pool.execute(
-    "UPDATE datauser SET name = ?, email= ?,  password= ? WHERE id = ?;",
+    "UPDATE datausers SET name = ?, email= ?,  password= ? WHERE id = ?;",
     [name, email, hashPass, id]
   );
   return res.redirect("/centerListUser");
