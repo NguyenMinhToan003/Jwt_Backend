@@ -44,7 +44,7 @@ const handlerUpdateUser = async (req, res) => {
   let { name, email, id, password } = req.body;
   if (!(name && email && id && password)) return res.send("can not invalid");
   await userService.editUser(id, name, email, password);
-
+  console.log("this is test");
   return res.redirect("/centerListUser");
 };
 const handlerUserDetail = async (req, res) => {
