@@ -32,12 +32,12 @@ const handlerAbout = (req, res) => {
 const handlerDeleteUser = async (req, res) => {
   const { id } = req.body;
   await userService.deleteUser(id);
-  // await pool.execute(`DELETE  FROM datausers WHERE ID = ?`, [id]);
+  // await pool.execute(`DELETE  FROM user WHERE ID = ?`, [id]);
   return res.redirect(`/centerListUser`);
 };
 const handlerEditUser = async (req, res) => {
   let id = req.params.id;
-  let [user] = await pool.execute(`select * from datausers where ID = ?`, [id]);
+  let [user] = await pool.execute(`select * from User where ID = ?`, [id]);
   return res.render("updateUser.ejs", { data: user[0] });
 };
 const handlerUpdateUser = async (req, res) => {
@@ -50,7 +50,7 @@ const handlerUpdateUser = async (req, res) => {
 const handlerUserDetail = async (req, res) => {
   console.log("this is detail user");
   let id = req.params.id;
-  let [user] = await pool.execute(`select * from datausers where ID = ?`, [id]);
+  let [user] = await pool.execute(`select * from User where ID = ?`, [id]);
   return res.render("userDetail.ejs", { data: user[0] });
 };
 module.exports = {
