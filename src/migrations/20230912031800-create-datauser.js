@@ -1,18 +1,14 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-<<<<<<< HEAD
-    await queryInterface.createTable("Users", {
-=======
     await queryInterface.createTable("Group", {
->>>>>>> 9b19918 (ORM update create delete user)
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-<<<<<<< HEAD
+
       email: {
         type: Sequelize.STRING,
       },
@@ -34,7 +30,6 @@ module.exports = {
       groupId: {
         type: Sequelize.INTEGER,
       },
-=======
 
       groupName: {
         type: Sequelize.STRING,
@@ -42,7 +37,6 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
       },
->>>>>>> 9b19918 (ORM update create delete user)
 
       createdAt: {
         allowNull: false,
@@ -55,10 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-<<<<<<< HEAD
     await queryInterface.dropTable("Users");
-=======
-    await queryInterface.dropTable("Group");
->>>>>>> 9b19918 (ORM update create delete user)
   },
 };
