@@ -4,8 +4,7 @@
     "password": null,
     "database": "jwt_database",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "loggin": false
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
