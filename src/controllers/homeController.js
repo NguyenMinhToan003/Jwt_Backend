@@ -47,6 +47,7 @@ const handlerUpdateUser = async (req, res) => {
 };
 const handlerUserDetail = async (req, res) => {
   let id = req.params.id;
+  console.log("this is detail ");
   let [user] = await pool.execute(`select * from datausers where ID = ?`, [id]);
   return res.render("userDetail.ejs", { data: user[0] });
 };
