@@ -1,4 +1,4 @@
-import Express from "express";
+// import Express from "express";
 import userService from "../services/userService";
 import pool from "../config/connectDataBase";
 let getHomepage = async (req, res) => {
@@ -44,13 +44,10 @@ const handlerUpdateUser = async (req, res) => {
   let { name, email, id, password } = req.body;
   if (!(name && email && id && password)) return res.send("can not invalid");
   await userService.editUser(id, name, email, password);
-  console.log("this is test");
   return res.redirect("/centerListUser");
 };
 const handlerUserDetail = async (req, res) => {
-  console.log("this is detail user");
   let id = req.params.id;
-  console.log("this is detail ");
   let [user] = await pool.execute(`select * from datausers where ID = ?`, [id]);
   return res.render("userDetail.ejs", { data: user[0] });
 };
