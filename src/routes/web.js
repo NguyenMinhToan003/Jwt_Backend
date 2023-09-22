@@ -1,6 +1,5 @@
 import Express from "express";
 import homeController from "../controllers/homeController";
-import apiController from "../controllers/apiController";
 const router = Express.Router();
 
 const initWebRouter = (app) => {

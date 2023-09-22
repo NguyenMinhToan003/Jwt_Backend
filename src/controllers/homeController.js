@@ -32,7 +32,6 @@ const handlerAbout = (req, res) => {
 const handlerDeleteUser = async (req, res) => {
   const { id } = req.body;
   await userService.deleteUser(id);
-  // await pool.execute(`DELETE  FROM datausers WHERE ID = ?`, [id]);
   return res.redirect(`/centerListUser`);
 };
 const handlerEditUser = async (req, res) => {
