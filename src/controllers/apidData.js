@@ -1,4 +1,4 @@
-const testApi = (req, res) => {
+const dataApi = (req, res) => {
   return res.status(200).json({
     url: [
       "https://cdn.shibe.online/shibes/4f530fd13b63d4f27170871ee50ce89f4ca6de9b.jpg",
@@ -106,5 +106,5 @@ const testApi = (req, res) => {
   });
 };
 module.exports = {
-  testApi,
+  dataApi,
 };

@@ -4,8 +4,8 @@ import apiControler from "../controllers/apiControler";
 const router = Express.Router();
 
 const initApiRouter = (app) => {
-  router.post("/reg", apiControler.handlerSignUp);
-  router.get("/test", apiData.testApi);
+  router.post("/signup", apiControler.handlerSignUp);
+  router.get("/dataApi", apiData.dataApi);
   return app.use("/api/v1", router);
 };
 export default initApiRouter;

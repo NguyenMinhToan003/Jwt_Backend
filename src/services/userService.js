@@ -8,10 +8,7 @@ const hashPassword = (password) => {
 };
 const createNewUser = async (email, password, name) => {
   const hashPass = hashPassword(password);
-  // await pool.execute(
-  //   `INSERT INTO datausers (name,password,email) VALUES (?,?,?) `,
-  //   [name, hashPass, email]
-  // );
+
   await db.datausers.create({
     name: name,
     email: email,
@@ -21,7 +18,7 @@ const createNewUser = async (email, password, name) => {
 const loadListUser = async () => {
   let data = [];
   data = await db.datausers.findAll();
-  // const [rows, fields] = await pool.execute("SELECT * FROM `datausers` ");
+
   return data;
 };
 const deleteUser = async (idUser) => {
@@ -39,10 +36,6 @@ const editUser = async (id, name, email, password) => {
       },
     }
   );
-  // await pool.execute(
-  //   "UPDATE datausers SET name = ?, email= ?,  password= ? WHERE id = ?;",
-  //   [name, email, hashPass, id]
-  // );
 };
 module.exports = {
   hashPassword,
