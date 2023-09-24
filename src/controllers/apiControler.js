@@ -17,8 +17,8 @@ const handlerSignUp = async (req, res) => {
     // handler server create user
     var data = await loginRegister.registerUser(req.body);
     return res.status(200).json({
-      EM: "complete create",
-      EC: "0",
+      EM: data.EM,
+      EC: data.EC,
       // EM: "Complete create",
       // EC: 0,
       DT: "",
@@ -31,6 +31,12 @@ const handlerSignUp = async (req, res) => {
     });
   }
 };
+const handlerLogin = (req, res) => {
+  return res.status(200).json({
+    data: req.body,
+  });
+};
 module.exports = {
   handlerSignUp,
+  handlerLogin,
 };

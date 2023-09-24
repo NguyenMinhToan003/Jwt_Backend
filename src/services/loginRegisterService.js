@@ -22,20 +22,19 @@ const registerUser = async (rawData) => {
     let checkPhone = await checkPhoneExist(rawData.phone);
     if (rawData.length < 3) {
       return {
-        EM: "Length pass is less",
+        EM: "Length password > 3",
         EC: 2,
       };
     }
     if (!checkEmail) {
       return {
-        EM: "exist email",
+        EM: "Exist email",
         EC: 2,
       };
     }
     if (!checkPhone) {
-      console.log(">>>>> Check emai false");
       return {
-        EM: "exist phone number",
+        EM: "Exist phone number",
         EC: 2,
       };
     }
@@ -53,12 +52,12 @@ const registerUser = async (rawData) => {
       name: rawData.name,
     });
     return {
-      EM: "Succsess create user",
+      EM: "Create account complete",
       EC: 0,
     };
   } catch (er) {
     return {
-      EM: "Something wrong ",
+      EM: "Error create account ",
       EC: -2,
     };
   }
