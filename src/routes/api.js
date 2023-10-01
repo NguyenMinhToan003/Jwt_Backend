@@ -8,7 +8,7 @@ const initApiRouter = (app) => {
   router.post("/signup", apiControler.handlerSignUp);
   router.post("/login", apiControler.handlerLogin);
   router.get("/dataApi", apiData.dataApi);
-
+  router.get("/user/read", userContronler.readFunc);
   router.get("/user/read", userContronler.readFunc);
   router.post("/user/create", userContronler.createFunc);
   router.put("/user/update", userContronler.updateFunc);

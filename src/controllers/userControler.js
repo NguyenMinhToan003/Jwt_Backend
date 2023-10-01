@@ -2,12 +2,24 @@ import userApiService from "../services/userApiService";
 
 const readFunc = async (req, res) => {
   try {
-    let users = await userApiService.getAllUser();
-    return res.status(500).json({
-      EM: users.EM,
-      EC: users.EC,
-      DT: users.DT,
-    });
+    if (req.query.limit && req.query.page) {
+      let limit = req.query.limit;
+      let page = req.query.page;
+      console.log(">>>>>>>>>> check query : ", limit, page);
+      let users = await userApiService.getUserPagination(page, limit);
+      return res.status(200).json({
+        EM: users.EM,
+        EC: users.EC,
+        DT: users.DT,
+      });
+    } else {
+      let users = await userApiService.getAllUser();
+      return res.status(200).json({
+        EM: users.EM,
+        EC: users.EC,
+        DT: users.DT,
+      });
+    }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -26,7 +38,7 @@ const createFunc = async (req, res) => {
 const updateFunc = async (req, res) => {
   try {
     let data = req.body;
-    await userApiService.updateUser(user);
+    await userApiService.updateUser(data);
   } catch (error) {
     console.log(error);
   }
