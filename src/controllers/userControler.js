@@ -43,10 +43,22 @@ const updateFunc = async (req, res) => {
     console.log(error);
   }
 };
-const deleteFunc = (req, res) => {
+const deleteFunc = async (req, res) => {
   try {
+    console.log(">>>>>>> check data req : ", req.body);
+    let data = await userApiService.deleteUser(req.body.id);
+    return res.status(200).json({
+      EM: data.EM,
+      EC: data.EC,
+      DT: [],
+    });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      EM: "ERROR from server",
+      EC: "1",
+      DT: [],
+    });
   }
 };
 module.exports = {

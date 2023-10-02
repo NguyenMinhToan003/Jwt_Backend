@@ -42,8 +42,6 @@ const getUserPagination = async (page, limit) => {
       totalPage: totalPage,
       user: rows,
     };
-    console.log(">>>>>> check data : ", data);
-
     return {
       EM: `Data User of Pagination ${page} and limit = ${limit}`,
       EC: 0,
@@ -75,7 +73,31 @@ const createUser = async (data) => {
     console.log(error);
   }
 };
-const deleteUser = (id) => {};
+const deleteUser = async (id) => {
+  try {
+    let user = await db.datausers.findOne({ where: { id: id } });
+    if (user) {
+      await user.destroy();
+      return {
+        EM: `Delete User by id : ${id}`,
+        EC: 0,
+        DT: "",
+      };
+    }
+    return {
+      EM: "User is not exist ",
+      EC: 2,
+      DT: "",
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      EM: "ERROR from server",
+      EC: 1,
+      DT: "",
+    };
+  }
+};
 
 module.exports = {
   getAllUser,
