@@ -5,7 +5,7 @@ const readFunc = async (req, res) => {
     if (req.query.limit && req.query.page) {
       let limit = req.query.limit;
       let page = req.query.page;
-      console.log(">>>>>>>>>> check query : ", limit, page);
+      // console.log(">>>>>>>>>> check query : ", limit, page);
       let users = await userApiService.getUserPagination(page, limit);
       return res.status(200).json({
         EM: users.EM,
@@ -31,8 +31,19 @@ const readFunc = async (req, res) => {
 };
 const createFunc = async (req, res) => {
   try {
+    let newAccount = await userApiService.createUser(req.body);
+    return res.status(200).json({
+      EM: newAccount.EM,
+      EC: newAccount.EC,
+      DT: newAccount.DT,
+    });
   } catch (error) {
     console.log(error);
+    return res.status(500).json({
+      RM: "ERROR from server",
+      EC: -1,
+      DT: [],
+    });
   }
 };
 const updateFunc = async (req, res) => {

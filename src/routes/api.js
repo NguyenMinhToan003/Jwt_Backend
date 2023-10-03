@@ -9,10 +9,10 @@ const initApiRouter = (app) => {
   router.post("/login", apiControler.handlerLogin);
   router.get("/dataApi", apiData.dataApi);
   router.get("/user/read", userContronler.readFunc);
-  router.get("/user/read", userContronler.readFunc);
   router.post("/user/create", userContronler.createFunc);
   router.put("/user/update", userContronler.updateFunc);
   router.delete("/user/delete", userContronler.deleteFunc);
+
   return app.use("/api/v1", router);
 };
 export default initApiRouter;

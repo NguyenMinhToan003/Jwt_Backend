@@ -5,7 +5,16 @@ const salt = bcrypt.genSaltSync(10);
 const hashPassword = (password) => {
   return bcrypt.hashSync(password, salt);
 };
-
+const checkEmailExist = async (email) => {
+  let account = await db.datausers.findOne({ where: { email: email } });
+  if (account === null) return false;
+  return true;
+};
+const checkPhoneExist = async (phone) => {
+  let account = await db.datausers.findOne({ where: { phone: phone } });
+  if (account === null) return false;
+  return true;
+};
 const getAllUser = async () => {
   try {
     let data = await db.datausers.findAll({
@@ -67,10 +76,34 @@ const updateUser = async (data) => {
     };
   }
 };
-const createUser = async (data) => {
+const createUser = async (rawData) => {
   try {
+    let checkEmail = await checkEmailExist(rawData.email);
+    let checkPhone = await checkPhoneExist(rawData.phone);
+    if (checkEmail) return { EM: "Email is Exist", EC: 3, DT: [] };
+    if (checkPhone) return { EM: "Phone is Exist", EC: 3, DT: [] };
+    let hashPass = hashPassword(rawData.password);
+    let newUser = await db.datausers.create({
+      email: rawData.email,
+      password: hashPass,
+      name: rawData.name,
+      address: rawData.address,
+      phone: rawData.phone,
+      major: rawData.major,
+      gender: rawData.gender,
+    });
+    return {
+      EM: "create new account",
+      EC: 0,
+      DT: newUser,
+    };
   } catch (error) {
     console.log(error);
+    return {
+      EM: "ERROR from server",
+      EC: -1,
+      DT: [],
+    };
   }
 };
 const deleteUser = async (id) => {
