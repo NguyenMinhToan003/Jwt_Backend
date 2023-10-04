@@ -65,8 +65,32 @@ const getUserPagination = async (page, limit) => {
     };
   }
 };
-const updateUser = async (data) => {
+const updateUser = async (rawData) => {
   try {
+    let user = await db.datausers.findOne({ where: { id: +rawData.id } });
+    if (user) {
+      let hashPass = hashPassword(rawData.password);
+      user.update({
+        // email: rawData.email,
+        password: hashPass,
+        name: rawData.name,
+        address: rawData.address,
+        // phone: rawData.phone,
+        major: rawData.major,
+        gender: rawData.gender,
+      });
+      return {
+        EM: "Update Account",
+        EC: 0,
+        DT: user,
+      };
+    } else {
+      return {
+        EM: "User already exist",
+        EC: 2,
+        DT: [],
+      };
+    }
   } catch (error) {
     console.log(error);
     return {

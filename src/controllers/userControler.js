@@ -48,10 +48,19 @@ const createFunc = async (req, res) => {
 };
 const updateFunc = async (req, res) => {
   try {
-    let data = req.body;
-    await userApiService.updateUser(data);
+    let dataUpdate = await userApiService.updateUser(req.body);
+    return res.status(200).json({
+      EM: dataUpdate.EM,
+      EC: dataUpdate.EC,
+      DT: dataUpdate.DT,
+    });
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      EM: "ERROR from server",
+      EC: -1,
+      DT: [],
+    });
   }
 };
 const deleteFunc = async (req, res) => {
