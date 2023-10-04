@@ -18,7 +18,15 @@ const checkPhoneExist = async (phone) => {
 const getAllUser = async () => {
   try {
     let data = await db.datausers.findAll({
-      attributes: ["id", "name", "email", "gender", "address"],
+      attributes: [
+        "id",
+        "name",
+        "email",
+        "gender",
+        "address",
+        "phone",
+        "groupId",
+      ],
       include: [{ model: db.Groups, attributes: ["name", "description"] }],
     });
 
@@ -40,7 +48,15 @@ const getUserPagination = async (page, limit) => {
   try {
     let offset = (page - 1) * limit;
     let { count, rows } = await db.datausers.findAndCountAll({
-      attributes: ["id", "name", "email", "gender", "address"],
+      attributes: [
+        "id",
+        "name",
+        "email",
+        "gender",
+        "address",
+        "phone",
+        "groupId",
+      ],
       include: [{ model: db.Groups, attributes: ["name", "description"] }],
       offset: offset,
       limit: +limit,
