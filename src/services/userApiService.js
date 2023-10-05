@@ -60,6 +60,7 @@ const getUserPagination = async (page, limit) => {
       include: [{ model: db.Groups, attributes: ["name", "description"] }],
       offset: offset,
       limit: +limit,
+      order: [["id", "DESC"]],
     });
     let totalPage = Math.ceil(count / limit);
     let data = {
