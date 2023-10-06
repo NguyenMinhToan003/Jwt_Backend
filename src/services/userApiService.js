@@ -88,11 +88,9 @@ const updateUser = async (rawData) => {
     if (user) {
       let hashPass = hashPassword(rawData.password);
       user.update({
-        // email: rawData.email,
         password: hashPass,
         name: rawData.name,
         address: rawData.address,
-        // phone: rawData.phone,
         major: rawData.major,
         gender: rawData.gender,
       });
@@ -103,7 +101,7 @@ const updateUser = async (rawData) => {
       };
     } else {
       return {
-        EM: "User already exist",
+        EM: "User is not exist",
         EC: 2,
         DT: [],
       };
