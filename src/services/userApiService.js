@@ -31,15 +31,15 @@ const getAllUser = async () => {
     });
 
     return {
-      EM: "Data All user",
+      EM: "Fetch Data User",
       EC: 0,
       DT: data,
     };
   } catch (error) {
     console.log(error);
     return {
-      EM: "not found",
-      EC: 1,
+      EM: "not found data",
+      EC: 2,
       DT: [],
     };
   }
@@ -76,8 +76,8 @@ const getUserPagination = async (page, limit) => {
   } catch (error) {
     console.log(error);
     return {
-      EM: "not found",
-      EC: 1,
+      EM: "not found data",
+      EC: 2,
       DT: [],
     };
   }
@@ -86,22 +86,20 @@ const updateUser = async (rawData) => {
   try {
     let user = await db.datausers.findOne({ where: { id: +rawData.id } });
     if (user) {
-      let hashPass = hashPassword(rawData.password);
       user.update({
-        password: hashPass,
         name: rawData.name,
         address: rawData.address,
-        major: rawData.major,
+        groupId: rawData.groupId,
         gender: rawData.gender,
       });
       return {
-        EM: "Update Account",
+        EM: "Update Account succes !",
         EC: 0,
         DT: user,
       };
     } else {
       return {
-        EM: "User is not exist",
+        EM: "User Empty",
         EC: 2,
         DT: [],
       };
@@ -109,8 +107,8 @@ const updateUser = async (rawData) => {
   } catch (error) {
     console.log(error);
     return {
-      EM: "something wrong",
-      EC: -1,
+      EM: "ERROR by Update Service",
+      EC: -2,
       DT: "",
     };
   }
@@ -128,7 +126,7 @@ const createUser = async (rawData) => {
       name: rawData.name,
       address: rawData.address,
       phone: rawData.phone,
-      major: rawData.major,
+      groupId: rawData.groupId,
       gender: rawData.gender,
     });
     return {
@@ -139,7 +137,7 @@ const createUser = async (rawData) => {
   } catch (error) {
     console.log(error);
     return {
-      EM: "ERROR from server",
+      EM: "ERROR by CreateService",
       EC: -1,
       DT: [],
     };
@@ -164,8 +162,8 @@ const deleteUser = async (id) => {
   } catch (error) {
     console.log(error);
     return {
-      EM: "ERROR from server",
-      EC: 1,
+      EM: "ERROR by deleteService ",
+      EC: -2,
       DT: "",
     };
   }

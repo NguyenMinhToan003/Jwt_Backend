@@ -6,10 +6,10 @@ const handlerSignUp = async (req, res) => {
       !req.body.email ||
       !req.body.password ||
       !req.body.phone ||
-      !req.body.major
+      !req.body.groupId
     ) {
-      return res.status(200).json({
-        EM: "Missing required server",
+      return res.status(500).json({
+        EM: "Missing in Data (bySignup)",
         EC: 1,
         DT: "",
       });

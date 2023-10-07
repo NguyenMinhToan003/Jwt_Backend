@@ -1,6 +1,7 @@
 import bcrypt, { hash } from "bcrypt";
 import { Op } from "sequelize";
 import db from "../models/index";
+import { getGroupWithRole } from "./jwtService";
 const salt = bcrypt.genSaltSync(10);
 
 const hashPassword = (password) => {
@@ -24,7 +25,7 @@ const registerUser = async (rawData) => {
   try {
     let checkEmail = await checkEmailExist(rawData.email);
     let checkPhone = await checkPhoneExist(rawData.phone);
-    if (rawData.length < 3) {
+    if (rawData.password.length < 3) {
       return {
         EM: "Length password > 3",
         EC: 2,
@@ -51,7 +52,7 @@ const registerUser = async (rawData) => {
       password: hassPass,
       address: rawData.address,
       phone: rawData.phone,
-      groupId: rawData.major,
+      groupId: rawData.groupId,
       gender: rawData.gender,
       name: rawData.name,
     });
@@ -69,6 +70,7 @@ const registerUser = async (rawData) => {
 
 const LoginUser = async (rawData) => {
   try {
+    console.log(rawData);
     let accountUser = await db.datausers.findOne({
       where: {
         [Op.or]: [{ email: rawData.account }, { phone: rawData.account }],
@@ -82,25 +84,30 @@ const LoginUser = async (rawData) => {
       );
 
       if (checkPass) {
+        let roles = await getGroupWithRole(accountUser);
+
         console.log(">>>>>> Complete Login");
         return {
-          EM: "correct password ",
+          EM: "Correct password ",
           EC: 0,
-          DT: "",
+          DT: {
+            acess_token: "",
+            roles,
+          },
         };
       }
     }
     console.log(">>>>>> dont Login");
     return {
-      EM: "Emai/Phone/Password is incorrect",
-      EC: 1,
-      DT: "",
+      EM: "Emai/Phone/Password is Error",
+      EC: 2,
+      DT: [],
     };
   } catch (error) {
     console.log(error);
     return {
-      EM: "ERROR from Server",
-      EC: -1,
+      EM: "ERROR by LoginService",
+      EC: -2,
       DT: "",
     };
   }

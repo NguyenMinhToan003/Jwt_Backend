@@ -11,7 +11,6 @@ const createJWT = () => {
   } catch (error) {
     console.log(error);
   }
-
   return token;
 };
 const verifyToken = (token) => {
