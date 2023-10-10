@@ -1,11 +1,9 @@
 import userApiService from "../services/userApiService";
-
 const readFunc = async (req, res) => {
   try {
     if (req.query.limit && req.query.page) {
       let limit = req.query.limit;
       let page = req.query.page;
-      // console.log(">>>>>>>>>> check query : ", limit, page);
       let users = await userApiService.getUserPagination(page, limit);
       return res.status(200).json({
         EM: users.EM,
@@ -65,7 +63,6 @@ const updateFunc = async (req, res) => {
 };
 const deleteFunc = async (req, res) => {
   try {
-    console.log(">>>>>>> check data req : ", req.body);
     let data = await userApiService.deleteUser(req.body.id);
     return res.status(200).json({
       EM: data.EM,
