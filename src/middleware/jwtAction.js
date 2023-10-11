@@ -46,11 +46,12 @@ const checkJWTToken = (req, res, next) => {
 };
 const checkPermission = (req, res, next) => {
   if (nonSecurePaths.includes(req.path)) return next();
+  // console.log(">>>>>check req.body:", req);
   if (req.user) {
     let email = req.user.email;
     let role = req.user.groupWithRole.Roles;
     let currentUrl = req.path;
-    if (!role && role.length == 0)
+    if (!role && role.length < 0)
       return res.status(403).json({
         EC: -1,
         EM: "You dont Permission to access resource...",

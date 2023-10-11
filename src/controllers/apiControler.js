@@ -32,10 +32,13 @@ const handlerLogin = async (req, res) => {
   try {
     let data = await loginRegister.LoginUser(req.body);
     // set cookie
-    res.cookie("jwt", data.DT.acess_token, {
-      httpOnly: true,
-      maxAge: 60 * 60 * 1000,
-    });
+    data &&
+      data.DT &&
+      data.DT.acess_token &&
+      res.cookie("jwt", data.DT.acess_token, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000,
+      });
     return res.status(200).json({
       EM: data.EM,
       EC: data.EC,

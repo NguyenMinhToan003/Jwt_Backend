@@ -100,6 +100,8 @@ const LoginUser = async (rawData) => {
           DT: {
             acess_token: token,
             groupWithRole,
+            email: accountUser.email,
+            name: accountUser.name,
           },
         };
       }
