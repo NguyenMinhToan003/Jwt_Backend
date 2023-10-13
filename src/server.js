@@ -9,15 +9,21 @@ import configCors from "./config/CORS";
 import cookieParser from "cookie-parser";
 const app = Express();
 
+// CORS
 configCors(app);
+// Connection Database
 connection();
+
 configViewEngine(app);
 
+// use json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // config cooke
 app.use(cookieParser());
 
+// Router
 initWebRouter(app);
 initApiRouter(app);
 
@@ -26,6 +32,7 @@ app.use((req, res) => {
   return res.send("404 not found");
 });
 
+// port
 const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => {

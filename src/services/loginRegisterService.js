@@ -72,7 +72,6 @@ const registerUser = async (rawData) => {
 
 const LoginUser = async (rawData) => {
   try {
-    console.log(rawData);
     let accountUser = await db.datausers.findOne({
       where: {
         [Op.or]: [{ email: rawData.account }, { phone: rawData.account }],
