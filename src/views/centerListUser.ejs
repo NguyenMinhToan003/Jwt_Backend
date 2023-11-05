@@ -21,8 +21,10 @@
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Major</th>
           <th scope="col">Handle</th>
         </tr>
       </thead>
@@ -34,6 +36,8 @@
           <th scope="row"><%=data[i].id%></th>
           <td><%=data[i].name%></td>
           <td><%=data[i].email%></td>
+          <td><%=data[i].phone%></td>
+          <td><%=data[i].groupId%></td>
           <td>
           <div class="option">
             <a  href="/user-detail/<%=data[i].id%>"  type="button" class="btn btn-primary">Details</a>
