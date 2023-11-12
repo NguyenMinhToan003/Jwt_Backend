@@ -5,7 +5,10 @@
     "database": "jwt_database",
     "host": "127.0.0.1",
     "logging": false,
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "define": {
+      "freezeTableName": true
+    }
   },
   "test": {
     "username": "root",
