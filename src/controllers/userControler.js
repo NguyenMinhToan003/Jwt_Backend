@@ -78,9 +78,23 @@ const deleteFunc = async (req, res) => {
     });
   }
 };
+const getAccount = async (req, res) => {
+  console.log(req.token);
+  return res.status(200).json({
+    EM: "ok",
+    EC: 0,
+    DT: {
+      acess_token: req.token,
+      groupWithRole: req.user.groupWithRole,
+      email: req.user.email,
+      name: req.user.name,
+    },
+  });
+};
 module.exports = {
   readFunc,
   createFunc,
   updateFunc,
   deleteFunc,
+  getAccount,
 };

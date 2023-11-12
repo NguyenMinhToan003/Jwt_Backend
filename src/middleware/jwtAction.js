@@ -23,13 +23,14 @@ const verifyToken = (token) => {
   return decoded;
 };
 const checkJWTToken = (req, res, next) => {
-  console.log(">>>>> check req.body : ", req.body);
   if (nonSecurePaths.includes(req.path)) return next();
   let cookie = req.cookies;
   if (cookie && cookie.jwt) {
-    let decoded = verifyToken(cookie.jwt);
+    let token = cookie.jwt;
+    let decoded = verifyToken(token);
     if (decoded) {
       req.user = decoded;
+      req.token = token;
       next();
     } else
       return res.status(401).json({
@@ -46,8 +47,8 @@ const checkJWTToken = (req, res, next) => {
   }
 };
 const checkPermission = (req, res, next) => {
-  if (nonSecurePaths.includes(req.path)) return next();
-  console.log(">>>>>check req.body:", req.user);
+  if (nonSecurePaths.includes(req.path) || req.path === "/account")
+    return next();
   if (req.user) {
     let email = req.user.email;
     let role = req.user.groupWithRole.Roles;
