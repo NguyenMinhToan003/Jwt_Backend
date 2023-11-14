@@ -79,7 +79,6 @@ const deleteFunc = async (req, res) => {
   }
 };
 const getAccount = async (req, res) => {
-  console.log(req.token);
   return res.status(200).json({
     EM: "ok",
     EC: 0,

@@ -89,13 +89,12 @@ const LoginUser = async (rawData) => {
         let payload = {
           email: accountUser.email,
           groupWithRole,
-          expiresIn: process.env.JWT_EXPIRES_IN,
           name: accountUser.name,
         };
         let token = createJWT(payload);
         console.log(">>>>>> Complete Login");
         return {
-          EM: "Correct password ",
+          EM: "Correct password",
           EC: 0,
           DT: {
             acess_token: token,
