@@ -53,7 +53,24 @@ const handlerLogin = async (req, res) => {
     });
   }
 };
+const handlerLogout = async (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    return res.status(200).json({
+      EM: "Clear Cookie done!",
+      EC: 0,
+      DT: "",
+    });
+  } catch {
+    return res.status(500).json({
+      EM: "ERROR from sever",
+      EC: -1,
+      DT: "",
+    });
+  }
+};
 module.exports = {
   handlerSignUp,
   handlerLogin,
+  handlerLogout,
 };

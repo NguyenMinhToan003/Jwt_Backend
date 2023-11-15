@@ -10,6 +10,7 @@ const initApiRouter = (app) => {
   router.all("*", checkJWTToken, checkPermission);
   router.post("/signup", apiControler.handlerSignUp);
   router.post("/login", apiControler.handlerLogin);
+  router.post("/logout", apiControler.handlerLogout);
   router.get("/dataApi", apiData.dataApi);
   router.get("/account", userContronler.getAccount);
   router.get("/user/read", userContronler.readFunc);
