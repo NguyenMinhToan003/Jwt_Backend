@@ -1,6 +1,8 @@
 import Express from "express";
 import roleContronler from "../controllers/roleContronler";
+import groupContronler from "../controllers/groupContronler";
 import apiControler from "../controllers/apiControler";
+import groupWithRoleControler from "../controllers/groupWithRoleControler";
 import userContronler from "../controllers/userControler";
 import { checkJWTToken, checkPermission } from "../middleware/jwtAction";
 
@@ -24,6 +26,15 @@ const initApiRouter = (app) => {
   router.post("/role/create", roleContronler.createFunc);
   router.put("/role/update", roleContronler.updateFunc);
   router.delete("/role/delete", roleContronler.deleteFunc);
+
+  // api Group
+  router.get("/group/read", groupContronler.readFunc);
+  router.post("/group/create", groupContronler.createFunc);
+  router.put("/group/update", groupContronler.updateFunc);
+  router.delete("/group/delete", groupContronler.deleteFunc);
+
+  // api group with role
+  router.post("/groupwithrole", groupWithRoleControler.readFunc);
 
   return app.use("/api/v1", router);
 };
