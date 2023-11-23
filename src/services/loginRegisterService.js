@@ -91,10 +91,11 @@ const LoginUser = async (rawData) => {
           groupWithRole,
           name: accountUser.name,
         };
+
         let token = createJWT(payload);
         console.log(">>>>>> Complete Login");
         return {
-          EM: "Correct password",
+          EM: `Welcome ${accountUser.name}`,
           EC: 0,
           DT: {
             acess_token: token,
