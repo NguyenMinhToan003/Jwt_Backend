@@ -2,7 +2,7 @@ import db from "../models/index";
 const readRole = async () => {
   try {
     let curentRole = await db.Roles.findAll({
-      attributes: ["url", "description"],
+      attributes: ["url", "description", "id"],
       raw: true,
     });
     return {

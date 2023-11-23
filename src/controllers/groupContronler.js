@@ -1,7 +1,7 @@
 import groupApiService from "../services/groupApiService";
 const readFunc = async (req, res) => {
   try {
-    let dataGroup = await groupApiService.getUserPagination();
+    let dataGroup = await groupApiService.readGroup();
     return res.status(200).json({
       EM: dataGroup.EM,
       EC: dataGroup.EC,

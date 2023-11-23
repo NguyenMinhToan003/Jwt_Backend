@@ -4,6 +4,7 @@ const nonSecurePaths = [
   "/login",
   "/signup",
   "/logout",
+  "/role",
   "/role/read",
   "/role/create",
   "/role/update",

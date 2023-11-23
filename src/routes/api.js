@@ -34,7 +34,8 @@ const initApiRouter = (app) => {
   router.delete("/group/delete", groupContronler.deleteFunc);
 
   // api group with role
-  router.post("/groupwithrole", groupWithRoleControler.readFunc);
+  router.get("/groupwithrole", groupWithRoleControler.readFunc);
+  router.get("/role", roleContronler.readAll);
 
   return app.use("/api/v1", router);
 };

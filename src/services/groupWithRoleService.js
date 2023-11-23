@@ -1,10 +1,9 @@
 import db from "../models/index";
 const readGroupWithRole = async (group) => {
   try {
-    let roles = await db.Groups.findAll({
-      where: { id: group.id },
-      raw: true,
-      attributes: ["name", "description"],
+    let role = await db.Groups.findOne({
+      where: { id: group },
+      attributes: ["name", "id", "description"],
       include: [
         {
           model: db.Roles,
@@ -13,10 +12,11 @@ const readGroupWithRole = async (group) => {
         },
       ],
     });
+
     return {
-      EM: "Select Group With Role",
+      EM: `Select Group With Role: ${role.Roles.length}`,
       EC: 0,
-      DT: roles,
+      DT: role,
     };
   } catch (error) {
     return {
