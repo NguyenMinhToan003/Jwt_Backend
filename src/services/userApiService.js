@@ -62,6 +62,7 @@ const getUserPagination = async (page, limit) => {
       limit: +limit,
       order: [["id", "DESC"]],
     });
+    console.log(rows);
     let totalPage = Math.ceil(count / limit);
     let data = {
       totalRows: count,

@@ -2,7 +2,7 @@ import db from "../models";
 
 const getGroupWithRole = async (user) => {
   let roles = await db.Groups.findOne({
-    where: { id: user.id },
+    where: { id: user.groupId },
     attributes: ["id", "name", "description"],
     include: [
       {
@@ -12,6 +12,7 @@ const getGroupWithRole = async (user) => {
       },
     ],
   });
+
   return roles ? roles : {};
 };
 

@@ -18,10 +18,12 @@ const createJWT = (payload) => {
   let token = null;
   let key = process.env.JWT_SECRET;
   try {
+    console.log(payload);
     token = jwt.sign(payload, key, { expiresIn: process.env.JWT_EXPIRES_IN });
   } catch (error) {
     console.log(error);
   }
+  console.log(token);
   return token;
 };
 const verifyToken = (token) => {
@@ -74,7 +76,7 @@ const checkPermission = (req, res, next) => {
   if (req.user) {
     let role = req.user.groupWithRole.Roles;
     let currentUrl = req.path;
-    if (!role && role.length < 0)
+    if (!role)
       return res.status(403).json({
         EC: -1,
         EM: "You dont Permission to access resource...",

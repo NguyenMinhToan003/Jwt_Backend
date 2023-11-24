@@ -63,6 +63,7 @@ const registerUser = async (rawData) => {
       EC: 0,
     };
   } catch (er) {
+    console.log(er);
     return {
       EM: "Error create account ",
       EC: -2,
@@ -76,16 +77,19 @@ const LoginUser = async (rawData) => {
       where: {
         [Op.or]: [{ email: rawData.account }, { phone: rawData.account }],
       },
+      raw: true,
     });
+    console.log("account login ", accountUser);
     if (accountUser !== null) {
       console.log(">>>>>>Check Password .... ");
       let checkPass = await checkPassword(
         rawData.password,
-        accountUser.dataValues.password
+        accountUser.password
       );
 
       if (checkPass) {
         let groupWithRole = await getGroupWithRole(accountUser);
+
         let payload = {
           email: accountUser.email,
           groupWithRole,
@@ -99,9 +103,9 @@ const LoginUser = async (rawData) => {
           EC: 0,
           DT: {
             acess_token: token,
-            groupWithRole,
             email: accountUser.email,
             name: accountUser.name,
+            groupWithRole,
           },
         };
       }
