@@ -19,6 +19,7 @@ const readGroupWithRole = async (group) => {
       DT: role,
     };
   } catch (error) {
+    console.log(error);
     return {
       EM: "ERROR from Server",
       EC: -1,
@@ -26,4 +27,27 @@ const readGroupWithRole = async (group) => {
     };
   }
 };
-module.exports = { readGroupWithRole };
+
+const createGroupWithRole = async (data) => {
+  try {
+    if (data[0].isEmpty) {
+      await db.Group_Roles.destroy({ where: { groupId: data[0].GroupId } });
+    } else {
+      await db.Group_Roles.destroy({ where: { groupId: data[0].GroupId } });
+      let groupRole = await db.Group_Roles.bulkCreate(data);
+    }
+    return {
+      EM: `Update Complete! `,
+      EC: 0,
+      DT: [],
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      EM: "ERROR from Server",
+      EC: -1,
+      DT: "",
+    };
+  }
+};
+module.exports = { readGroupWithRole, createGroupWithRole };

@@ -15,4 +15,21 @@ const readFunc = async (req, res) => {
     });
   }
 };
-module.exports = { readFunc };
+const createFunc = async (req, res) => {
+  try {
+    console.log(req.body);
+    let data = await groupWithRole.createGroupWithRole(req.body);
+    return res.status(200).json({
+      EM: data.EM,
+      EC: data.EC,
+      DT: data.DT,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      EM: "ERROR from Server",
+      EC: -1,
+      DT: "",
+    });
+  }
+};
+module.exports = { readFunc, createFunc };

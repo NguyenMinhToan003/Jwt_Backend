@@ -36,6 +36,7 @@ const initApiRouter = (app) => {
   // api group with role
   router.get("/groupwithrole", groupWithRoleControler.readFunc);
   router.get("/role", roleContronler.readAll);
+  router.post("/groupwithrole/create", groupWithRoleControler.createFunc);
 
   return app.use("/api/v1", router);
 };

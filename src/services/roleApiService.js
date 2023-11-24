@@ -10,7 +10,8 @@ const readRole = async () => {
       EC: 0,
       DT: curentRole,
     };
-  } catch {
+  } catch (error) {
+    console.log(error);
     return {
       EM: "ERROR from Server",
       EC: -1,
@@ -72,6 +73,7 @@ const createRole = async (role) => {
       DT: "",
     };
   } catch (error) {
+    console.log(error);
     return {
       EM: "ERROR from Server",
       EC: -1,
@@ -99,6 +101,7 @@ const updateRole = async (rawRole) => {
       DT: "",
     };
   } catch (error) {
+    console.log(error);
     return {
       EC: -1,
       EM: "ERROR from Server",
