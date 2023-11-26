@@ -29,6 +29,9 @@ module.exports = {
       groupId: {
         type: Sequelize.INTEGER,
       },
+      // image: {
+      //   type: DataTypes.STRING,
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

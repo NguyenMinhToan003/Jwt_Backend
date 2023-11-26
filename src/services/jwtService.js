@@ -12,7 +12,6 @@ const getGroupWithRole = async (user) => {
       },
     ],
   });
-
   return roles ? roles : {};
 };
 

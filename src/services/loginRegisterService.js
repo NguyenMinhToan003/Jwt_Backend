@@ -79,7 +79,6 @@ const LoginUser = async (rawData) => {
       },
       raw: true,
     });
-    console.log("account login ", accountUser);
     if (accountUser !== null) {
       console.log(">>>>>>Check Password .... ");
       let checkPass = await checkPassword(
@@ -89,7 +88,6 @@ const LoginUser = async (rawData) => {
 
       if (checkPass) {
         let groupWithRole = await getGroupWithRole(accountUser);
-
         let payload = {
           email: accountUser.email,
           groupWithRole,

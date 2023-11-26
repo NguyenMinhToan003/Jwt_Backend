@@ -1,9 +1,11 @@
 import Express from "express";
 import homeController from "../controllers/homeController";
+import ssoContronler from "../controllers/ssoControler";
 const router = Express.Router();
 
 const initWebRouter = (app) => {
   router.get("/", homeController.getHomepage);
+  router.get("/login", ssoContronler.login);
   router.get("/user", homeController.handlerUser);
   router.get("/signup", homeController.handlerSignup);
   router.post("/create-user", homeController.handlerCreateUser);

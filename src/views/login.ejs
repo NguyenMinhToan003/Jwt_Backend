@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/css/signUp.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <div class="container right-panel-active">
+      <div class="container__form container--signup">
+        <form action="/login" class="form" id="form2" method="POST">
+          <h2 class="form__title">Login</h2>
+          <input
+            type="email"
+            placeholder="Email"
+            class="input username"
+            name="email" />
+          <input
+            type="password"
+            placeholder="Password"
+            class="input"
+            name="password" />
+          <a href="/forgotPassword" class="link">Forgot your password?</a>
+          <button class="btn">Login</button>
+        </form>
+      </div>
+
+      <!-- Overlay -->
+      <div class="container__overlay">
+        <div class="overlay">
+          <div class="overlay__panel overlay--right">
+            <button class="btn" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
