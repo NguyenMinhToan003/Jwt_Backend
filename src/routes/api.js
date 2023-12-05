@@ -1,5 +1,4 @@
 import Express from "express";
-import fileUpload from "express-fileupload";
 import roleContronler from "../controllers/roleContronler";
 import groupContronler from "../controllers/groupContronler";
 import apiControler from "../controllers/apiControler";
@@ -12,7 +11,6 @@ import { storageEbook } from "../services/upload";
 const router = Express.Router();
 const upload = multer({ storage: storageEbook });
 const initApiRouter = (app) => {
-  // router.use(fileUpload());
   router.all("*", checkJWTToken, checkPermission);
   router.post("/signup", apiControler.handlerSignUp);
   router.post("/login", apiControler.handlerLogin);
@@ -42,13 +40,14 @@ const initApiRouter = (app) => {
   router.get("/role", roleContronler.readAll);
   router.post("/groupwithrole/create", groupWithRoleControler.createFunc);
 
-  // api test
+  // api ebook
 
   router.post(
-    "/uploadebook",
+    "/ebook/upload",
     upload.single("image"),
     ebookContronler.ebookUpload
   );
+  router.get("/ebook/read", ebookContronler.ebookRead);
 
   return app.use("/api/v1", router);
 };

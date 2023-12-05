@@ -21,6 +21,24 @@ const ebookUpload = async (req, res) => {
     });
   }
 };
+const ebookRead = async (req, res) => {
+  try {
+    let status = await bookService.readAll();
+    return res.status(200).json({
+      EM: status.EM,
+      EC: status.EC,
+      DT: status.DT,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      EC: -1,
+      EM: "ERROR from Server",
+      DT: "",
+    });
+  }
+};
 module.exports = {
   ebookUpload,
+  ebookRead,
 };

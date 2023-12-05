@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import connection from "./config/connectDB";
 import configCors from "./config/CORS";
 import cookieParser from "cookie-parser";
+import path from "path";
 const app = Express();
 
 // CORS
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // config cooke
 app.use(cookieParser());
+app.use("/assets", Express.static(path.join(__dirname, "/assets")));
 
 // Router
 initWebRouter(app);
