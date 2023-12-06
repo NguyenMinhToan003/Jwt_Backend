@@ -17,7 +17,6 @@ const readFunc = async (req, res) => {
 };
 const createFunc = async (req, res) => {
   try {
-    console.log(req.body);
     let data = await groupWithRole.createGroupWithRole(req.body);
     return res.status(200).json({
       EM: data.EM,

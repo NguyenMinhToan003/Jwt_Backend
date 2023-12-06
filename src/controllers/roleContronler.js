@@ -3,7 +3,6 @@ const readFunc = async (req, res) => {
   try {
     let limit = req.query.limit;
     let page = req.query.page;
-
     let role = await roleApiService.getUserPagination(page, limit);
     return res.status(200).json({
       EM: role.EM,
@@ -22,7 +21,6 @@ const readFunc = async (req, res) => {
 const createFunc = async (req, res) => {
   try {
     const role = await roleApiService.createRole(req.body);
-    console.log(role);
     return res.status(200).json({
       EM: role.EM,
       EC: role.EC,
@@ -38,7 +36,6 @@ const createFunc = async (req, res) => {
 };
 const updateFunc = async (req, res) => {
   try {
-    console.log(req.body);
     let status = await roleApiService.updateRole(req.body);
 
     return res.status(200).json({
