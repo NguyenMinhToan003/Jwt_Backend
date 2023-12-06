@@ -23,16 +23,27 @@ const upBook = async (rawdata) => {
     };
   }
 };
-const readAll = async () => {
+const readAll = async (page, limit) => {
   try {
-    // let data = await db.Books.findAndCountAll({ limit: 4 });
-    let data = await db.Books.findAll();
+    let offset = (page - 1) * limit;
+    let { count, rows } = await db.Books.findAndCountAll({
+      offset: offset,
+      limit: +limit,
+      order: [["id", "DESC"]],
+    });
+    let totalPage = Math.ceil(count / limit);
+    let data = {
+      totalRows: count,
+      totalPage: totalPage,
+      book: rows,
+    };
     return {
       EC: 0,
       EM: "Get EBook Ok",
       DT: data,
     };
   } catch (error) {
+    console.log(error);
     return {
       EC: -1,
       EM: "ERROR from Book",
@@ -40,7 +51,24 @@ const readAll = async () => {
     };
   }
 };
+const ebookDetail = async (id) => {
+  try {
+    let data = await db.Books.findOne({ where: { id: id } });
+    return {
+      EM: "Get Detail EBook !",
+      EC: 0,
+      DT: data,
+    };
+  } catch (error) {
+    return {
+      EC: -1,
+      EM: "ERROR from EBook",
+      DT: "",
+    };
+  }
+};
 module.exports = {
   upBook,
   readAll,
+  ebookDetail,
 };

@@ -41,13 +41,13 @@ const initApiRouter = (app) => {
   router.post("/groupwithrole/create", groupWithRoleControler.createFunc);
 
   // api ebook
-
   router.post(
     "/ebook/upload",
     upload.single("image"),
     ebookContronler.ebookUpload
   );
   router.get("/ebook/read", ebookContronler.ebookRead);
+  router.get("/ebook/detail", ebookContronler.ebookDetail);
 
   return app.use("/api/v1", router);
 };
