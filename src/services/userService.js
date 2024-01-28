@@ -1,4 +1,3 @@
-// import pool from "../config/connectDataBase";
 import db from "../models/index";
 import bcrypt from "bcrypt";
 const salt = bcrypt.genSaltSync(10);

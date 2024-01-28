@@ -9,18 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Books.belongsToMany(models.datausers, {
-        through: `User_Books`,
-      });
-      models.datausers.belongsToMany(models.Books, {
-        through: `User_Books`,
-      });
+
+      models.Books.belongsToMany(models.datausers, { through: `User_Books` });
+      models.datausers.belongsToMany(models.Books, { through: `User_Books` });
     }
   }
   User_Books.init(
     {
       bookId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
+      datauserId: DataTypes.INTEGER,
     },
     {
       sequelize,

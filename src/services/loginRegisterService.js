@@ -29,7 +29,7 @@ const registerUser = async (rawData) => {
     let checkPhone = await checkPhoneExist(rawData.phone);
     if (rawData.password.length < 3) {
       return {
-        EM: "Length password > 3",
+        EM: "Length password >= 3",
         EC: 2,
       };
     }
@@ -92,8 +92,8 @@ const LoginUser = async (rawData) => {
           email: accountUser.email,
           groupWithRole,
           name: accountUser.name,
+          id: accountUser.id,
         };
-
         let token = createJWT(payload);
         console.log(">>>>>> Complete Login");
         return {
@@ -103,6 +103,7 @@ const LoginUser = async (rawData) => {
             acess_token: token,
             email: accountUser.email,
             name: accountUser.name,
+            id: accountUser.id,
             groupWithRole,
           },
         };
