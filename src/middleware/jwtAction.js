@@ -1,11 +1,13 @@
 require("dotenv").config();
 import jwt from "jsonwebtoken";
 const nonSecurePaths = [
+  // "/user/read",
   "/login",
   "/signup",
   "/logout",
   // "/ebook/upload",
-  "/ebook/read",
+  // "/ebook/upload",
+  // "/ebook/read",
   // "/ebook/detail",
   // "/role",
   // "/role/read",
@@ -46,6 +48,7 @@ const extractToken = (req) => {
   }
   return null;
 };
+
 const checkJWTToken = (req, res, next) => {
   if (nonSecurePaths.includes(req.path)) return next();
   let cookie = req.cookies;

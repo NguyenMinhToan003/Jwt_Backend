@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       datausers.belongsTo(models.Groups);
       datausers.belongsToMany(models.Books, {
         through: `User_Books`,
-        foreignKey: "userId",
+        foreignKey: "datauserId",
       });
     }
   }

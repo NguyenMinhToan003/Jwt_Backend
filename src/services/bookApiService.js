@@ -1,7 +1,7 @@
 import db from "../models/index";
 const upBook = async (rawdata) => {
   try {
-    const newImage = await db.Books.create({
+    const newBook = await db.Books.create({
       name: rawdata.name,
       urlImage: rawdata.urlImage,
       author: rawdata.author,
@@ -9,10 +9,17 @@ const upBook = async (rawdata) => {
       description: rawdata.description,
       vote: +rawdata.vote,
     });
+    let bookId = newBook.id;
+    console.log(bookId);
+    const newUserEBook = await db.User_Books.create({
+      datauserId: rawdata.user,
+      BookId: bookId,
+    });
+    console.log(newUserEBook);
     return {
-      EM: "Upload EBook Done!",
+      EM: "Ebook in Uploaded ^^",
       EC: 0,
-      DT: newImage,
+      DT: newBook,
     };
   } catch (error) {
     console.log(error);
