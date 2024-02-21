@@ -7,7 +7,6 @@ const hashPassword = (password) => {
 };
 const createNewUser = async (email, password, name) => {
   const hashPass = hashPassword(password);
-
   await db.datausers.create({
     name: name,
     email: email,
