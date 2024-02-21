@@ -9,14 +9,13 @@ const upBook = async (rawdata) => {
       description: rawdata.description,
       vote: +rawdata.vote,
     });
-    // console.log(rawdata);
 
     let bookId = newBook.id;
     const newUserEBook = await db.User_Books.create({
       datauserId: +rawdata.user,
       BookId: bookId,
     });
-    console.log(newUserEBook);
+
     return {
       EM: "Ebook in Uploaded ^^",
       EC: 0,
