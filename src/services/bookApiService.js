@@ -9,10 +9,11 @@ const upBook = async (rawdata) => {
       description: rawdata.description,
       vote: +rawdata.vote,
     });
+    // console.log(rawdata);
+
     let bookId = newBook.id;
-    console.log(bookId);
     const newUserEBook = await db.User_Books.create({
-      datauserId: rawdata.user,
+      datauserId: +rawdata.user,
       BookId: bookId,
     });
     console.log(newUserEBook);
@@ -60,13 +61,17 @@ const readAll = async (page, limit) => {
 };
 const ebookDetail = async (id) => {
   try {
-    let data = await db.Books.findOne({ where: { id: id } });
+    let data = await db.Books.findOne({
+      where: { id: id },
+      include: [{ model: db.datausers }],
+    });
     return {
       EM: "Get Detail EBook !",
       EC: 0,
       DT: data,
     };
   } catch (error) {
+    console.log(error);
     return {
       EC: -1,
       EM: "ERROR from EBook",
