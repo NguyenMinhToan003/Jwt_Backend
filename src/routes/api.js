@@ -5,6 +5,7 @@ import apiControler from "../controllers/apiControler";
 import groupWithRoleControler from "../controllers/groupWithRoleControler";
 import userContronler from "../controllers/userControler";
 import ebookContronler from "../controllers/ebookContronler.js";
+import cartController from "../controllers/cartController.js";
 import { checkJWTToken, checkPermission } from "../middleware/jwtAction";
 import multer from "multer";
 import { storageEbook } from "../services/upload";
@@ -48,6 +49,7 @@ const initApiRouter = (app) => {
   );
   router.get("/ebook/read", ebookContronler.ebookRead);
   router.get("/ebook/detail", ebookContronler.ebookDetail);
+  router.post("/cart/load", cartController.cartLoad);
 
   return app.use("/api/v1", router);
 };

@@ -1,10 +1,10 @@
 require("dotenv").config();
 import jwt from "jsonwebtoken";
 const nonSecurePaths = [
-  // "/user/read",
   "/login",
   "/signup",
   "/logout",
+  "/cart/load",
   // "/ebook/upload",
   // "/ebook/upload",
   // "/ebook/read",
