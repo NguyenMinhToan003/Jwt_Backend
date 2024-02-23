@@ -5,6 +5,7 @@ const nonSecurePaths = [
   "/signup",
   "/logout",
   "/cart/load",
+  "/ebook/search",
   // "/ebook/upload",
   // "/ebook/upload",
   // "/ebook/read",

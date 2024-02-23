@@ -1,5 +1,5 @@
-import { raw } from "body-parser";
 import db from "../models/index";
+import { Op } from "sequelize";
 const upBook = async (rawdata) => {
   try {
     const newBook = await db.Books.create({
@@ -81,8 +81,44 @@ const ebookDetail = async (id) => {
     };
   }
 };
+const ebookSearch = async (key, offset, limit) => {
+  try {
+    console.log(key);
+    if (key !== "") {
+      const { count, rows } = await db.Books.findAndCountAll({
+        where: {
+          name: {
+            [Op.like]: `%${key}%`,
+          },
+        },
+        offset: +offset,
+        limit: +limit,
+      });
+      return {
+        EM: `Search Ebook key : ${key}`,
+        EC: 0,
+        DT: rows,
+      };
+    } else {
+      return {
+        EM: `Nothing search`,
+        EC: 0,
+        DT: [],
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      EM: "Error from Service",
+      EC: -1,
+      DT: "",
+    };
+  }
+};
+
 module.exports = {
   upBook,
   readAll,
   ebookDetail,
+  ebookSearch,
 };

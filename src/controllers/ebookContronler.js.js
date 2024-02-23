@@ -55,8 +55,27 @@ const ebookDetail = async (req, res) => {
     });
   }
 };
+const ebookSearch = async (req, res) => {
+  try {
+    let { key, offset, limit } = req.body;
+    let data = await bookService.ebookSearch(key, offset, limit);
+    return res.status(200).json({
+      EC: data.EC,
+      EM: data.EM,
+      DT: data.DT,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      EM: "ERROR from Server",
+      EC: -1,
+      DT: "",
+    });
+  }
+};
 module.exports = {
   ebookUpload,
   ebookRead,
   ebookDetail,
+  ebookSearch,
 };

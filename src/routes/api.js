@@ -49,6 +49,9 @@ const initApiRouter = (app) => {
   );
   router.get("/ebook/read", ebookContronler.ebookRead);
   router.get("/ebook/detail", ebookContronler.ebookDetail);
+  router.post("/ebook/search", ebookContronler.ebookSearch);
+
+  //cart Shopping
   router.post("/cart/load", cartController.cartLoad);
 
   return app.use("/api/v1", router);
