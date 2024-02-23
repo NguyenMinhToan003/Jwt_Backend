@@ -1,3 +1,4 @@
+import { raw } from "body-parser";
 import db from "../models/index";
 const upBook = async (rawdata) => {
   try {
@@ -8,6 +9,8 @@ const upBook = async (rawdata) => {
       date: rawdata.date,
       description: rawdata.description,
       vote: +rawdata.vote,
+      amount: rawdata.amount,
+      price: rawdata.price,
     });
 
     let bookId = newBook.id;

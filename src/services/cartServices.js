@@ -10,15 +10,18 @@ const fetchListCart = async (list) => {
       });
       data = [...data, addData];
     }
-    console.log(data);
     return {
       EM: "Load Cart",
       EC: 0,
       DT: data,
-    }; // Returning the fetched data
+    };
   } catch (error) {
     console.log(error);
-    throw new Error("Error fetching data from Cart"); // Throwing an error to handle it outside
+    return {
+      EM: "Error from Service",
+      EC: -1,
+      DT: "",
+    };
   }
 };
 

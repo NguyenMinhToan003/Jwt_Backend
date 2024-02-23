@@ -27,7 +27,15 @@ module.exports = {
       },
       vote: {
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
+      },
+      price: {
+        allowNull: false,
+        type: Sequelize.FLOAT,
+      },
+      amount: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
