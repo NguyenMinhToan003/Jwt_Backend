@@ -83,7 +83,6 @@ const ebookDetail = async (id) => {
 };
 const ebookSearch = async (key, offset, limit) => {
   try {
-    console.log(key);
     if (key !== "") {
       const { count, rows } = await db.Books.findAndCountAll({
         where: {
