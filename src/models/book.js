@@ -21,7 +21,9 @@ module.exports = (sequelize, DataTypes) => {
       author: DataTypes.STRING,
       date: DataTypes.DATE,
       description: DataTypes.TEXT,
-      vote: DataTypes.STRING,
+      vote: DataTypes.INTEGER,
+      price: DataTypes.FLOAT,
+      amount: DataTypes.INTEGER,
     },
     {
       sequelize,
