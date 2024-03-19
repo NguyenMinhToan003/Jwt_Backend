@@ -9,6 +9,7 @@ import configCors from "./config/CORS";
 import cookieParser from "cookie-parser";
 import path from "path";
 const app = Express();
+const PORT = process.env.PORT || 9000;
 
 // CORS
 configCors(app);
@@ -35,7 +36,6 @@ app.use((req, res) => {
 });
 
 // port
-const PORT = process.env.PORT || 9000;
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

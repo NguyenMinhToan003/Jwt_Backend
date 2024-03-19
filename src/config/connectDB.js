@@ -1,5 +1,4 @@
 // connection in sequelize
-
 const { Sequelize } = require("sequelize");
 
 // Option 3: Passing parameters separately (other dialects)

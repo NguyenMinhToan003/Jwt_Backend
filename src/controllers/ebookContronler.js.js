@@ -5,7 +5,6 @@ const ebookUpload = async (req, res) => {
   try {
     let rawdata = req.body;
     let urlImage = `${process.env.STORE}${req.file.filename}`;
-    console.log(urlImage);
     rawdata = { ...rawdata, urlImage };
     let status = await bookService.upBook(rawdata);
     return res.status(200).json({
