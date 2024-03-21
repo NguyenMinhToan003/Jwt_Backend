@@ -4,7 +4,7 @@ import configViewEngine from "./config/viewEngine";
 import initWebRouter from "./routes/web";
 import initApiRouter from "./routes/api";
 import bodyParser from "body-parser";
-import connection from "./config/connectDB";
+import connection from "./config/connectBymysql";
 import configCors from "./config/CORS";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 9000;
 
 // CORS
 configCors(app);
-// Connection Database
-connection();
+// Connection Database ORM
+() => connection();
 
 configViewEngine(app);
 

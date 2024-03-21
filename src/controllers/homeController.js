@@ -1,6 +1,6 @@
 // import Express from "express";
 import userService from "../services/userService";
-import pool from "../config/connectDataBase";
+import pool from "../config/connectBymysql";
 let getHomepage = async (req, res) => {
   return res.render("home.ejs");
 };

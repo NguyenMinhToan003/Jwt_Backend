@@ -1,6 +1,7 @@
 import Express from "express";
 import homeController from "../controllers/homeController";
 import ssoContronler from "../controllers/ssoControler";
+import test from "../controllers/test";
 const router = Express.Router();
 
 const initWebRouter = (app) => {
@@ -16,6 +17,7 @@ const initWebRouter = (app) => {
   router.get("/editUser/:id", homeController.handlerEditUser);
   router.post("/updateUser", homeController.handlerUpdateUser);
   router.get("/user-detail/:id", homeController.handlerUserDetail);
+  router.post("/themkhachhang", test.themkhachhang);
   return app.use("/", router);
 };
 export default initWebRouter;

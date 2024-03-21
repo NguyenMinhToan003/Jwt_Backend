@@ -9,10 +9,11 @@ import cartController from "../controllers/cartController.js";
 import { checkJWTToken, checkPermission } from "../middleware/jwtAction";
 import multer from "multer";
 import { storageEbook } from "../services/upload";
+import test from "../controllers/test.js";
 const router = Express.Router();
 const upload = multer({ storage: storageEbook });
 const initApiRouter = (app) => {
-  router.all("*", checkJWTToken, checkPermission);
+  // router.all("*", checkJWTToken, checkPermission);
   router.post("/signup", apiControler.handlerSignUp);
   router.post("/login", apiControler.handlerLogin);
   router.post("/logout", apiControler.handlerLogout);
@@ -54,6 +55,7 @@ const initApiRouter = (app) => {
   //cart Shopping
   router.post("/cart/load", cartController.cartLoad);
 
+  router.post("/themkhachhang", test.themkhachhang);
   return app.use("/api/v1", router);
 };
 export default initApiRouter;
